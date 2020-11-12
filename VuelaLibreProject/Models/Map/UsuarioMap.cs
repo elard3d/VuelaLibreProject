@@ -11,7 +11,7 @@ namespace VuelaLibreProject.Models.Map
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable("Usuario");
+            builder.ToTable("Usuarios");
             builder.HasKey(o => o.idUsuario);
         }
     }
