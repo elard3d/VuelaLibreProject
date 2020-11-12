@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using VuelaLibreProject.Models.DB;
+using VuelaLibreProject.Models;
 
 namespace VuelaLibreProject.Controllers
 {
@@ -17,11 +18,13 @@ namespace VuelaLibreProject.Controllers
             this._context = context;
 
         }
-        public IActionResult Index()
+        public IActionResult ListaVuelos()
         {
             ViewBag.Vuelos = _context.vuelos.ToList();
 
             return View();
         }
+
+        
     }
 }

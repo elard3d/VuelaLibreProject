@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VuelaLibreProject.Controllers
 {
-    public class Ticket_Controller : Controller
+    public class TicketController : Controller
     {
         public IActionResult Index()
         {

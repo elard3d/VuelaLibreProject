@@ -26,9 +26,12 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Nº</th>
-                <th>Nombre</th>
-                <th>Video</th>
+                <th></th>
+                <th>Destino Salida</th>
+                <th>Lugar de Destino</th>
+                <th>Tiempo de Vuelo</th>
+                <th>Fecha/hora</th>
+                <th>Cant. Asientos</th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +51,7 @@
                     <td>@item.tiempoVuelo</td>
                     <td>@item.fechaHoraVuelo</td>
                     <td>@item.asientos</td>
+                    <td><a class="btn btn-success" href="/Account/comprar?id=@item.idVuelo">Comprar</a></td>
                 </tr>
 
             }

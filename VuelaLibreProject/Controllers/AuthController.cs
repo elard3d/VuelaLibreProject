@@ -61,8 +61,9 @@ namespace VuelaLibreProject.Controllers
                 var clainmsPrincipal = new ClaimsPrincipal(clainmsIdentity);
 
                 HttpContext.SignInAsync(clainmsPrincipal);
+                ViewBag.userid = user.idUsuario;
 
-                return RedirectToAction("Index", "Ejercicios");
+                return RedirectToAction("ListaVuelos", "Fligths");
 
             }
 
@@ -99,10 +100,12 @@ namespace VuelaLibreProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(string email, string password)
+        public ActionResult Register(string name, string lastname, string email, string password)
         {
             var user = new Usuario();
 
+            user.nombreUsuario = name;
+            user.apellidoUsuario = lastname;
             user.correoUsuario = email;
 
             user.contraseñaUsuario = CreateHash(password);
