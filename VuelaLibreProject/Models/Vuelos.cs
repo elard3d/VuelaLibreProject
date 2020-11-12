@@ -12,7 +12,7 @@ namespace VuelaLibreProject.Models
         public string destino { get; set; }
         public string tiempoVuelo { get; set; }
         public string precioVuelo { get; set; }
-        public string fechaHoraVuelo { get; set; }
+        public DateTime fechaHoraVuelo { get; set; }
         public int asientos{ get; set; }
     }
 }

@@ -11,7 +11,7 @@
     <div class="navbar flex-sm-row-reverse">
         <ul class="flex-grow-1">
             <li class="nav-item">
-                <a class="btn btn-info" asp-area="" asp-controller="Ejercicios" asp-action="CrearRutina">Crear Rutina</a>
+                <a class="btn btn-info" asp-area="" asp-controller="Vuelos" asp-action="CrearVuelo">Crear Vuelo</a>
             </li>
         </ul>
     </div>
@@ -19,7 +19,7 @@
 
 
 
-    <h2>Lista de Ejercicios</h2>
+    <h2>Lista de Vuelos</h2>
 
     <br />
 
@@ -27,8 +27,11 @@
         <thead>
             <tr>
                 <th>Nº</th>
-                <th>Nombre</th>
-                <th>Video</th>
+                <th>Lugar de Salida</th>
+                <th>Lugar de Destino</th>
+                <th>Tiempo de Vuelo</th>
+                <th>Fecha y Hora</th>
+                <th>Cant. Asientos</th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +51,7 @@
                     <td>@item.tiempoVuelo</td>
                     <td>@item.fechaHoraVuelo</td>
                     <td>@item.asientos</td>
+                    <td><a class="btn btn-success" asp-area="" asp-controller="Vuelos" asp-action="ComprarVuelo">Comprar</a></td>
                 </tr>
 
             }
