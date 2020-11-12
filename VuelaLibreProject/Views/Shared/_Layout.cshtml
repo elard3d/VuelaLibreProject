@@ -37,17 +37,58 @@
                             <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#top">Home <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#tm-section-4">Portfolio</a>
+                                        <a class="nav-link" asp-area="" asp-controller="Fligths" asp-action="Index">Vuelos</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#tm-section-5">Blog Entries</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#tm-section-6">Contact Us</a>
-                                    </li>
+                                    @*<li class="nav-item">
+                                         <a class="nav-link" href="#tm-section-5">Blog Entries</a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a class="nav-link" href="#tm-section-6">Contact Us</a>
+                                     </li>*@
+                                </ul>
+                            </div>
+                            <div class="collapse navbar-collapse tm-bg-white d-sm-inline-flex flex-sm-row-reverse" id="navbarNavDropdown">
+                                <ul class="navbar-nav">
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><b>Registrarse </b><i class="fas fa-angle-right"></i> </a>
+
+                                        </li>
+
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><b>Iniciar Sessión </b><i class=" fas fa-sign-in-alt"></i></a>
+
+                                        </li>
+                                    }
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+
+                                        <li>
+
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout"><b>LogOut </b></a>
+
+
+                                        </li>
+
+                                        <li>
+
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Perfil"><b>@User.Claims.FirstOrDefault().Value</b></a>
+
+
+                                        </li>
+
+
+                                        if (@User.Claims.FirstOrDefault().Value == "admin@gmail.com")
+                                        {
+                                            <li class="nav-item">
+                                                <a href="/account/crearvuelo" class="nav-link text-dark">Crear Vuelo</a>
+                                            </li>
+                                        }
+                                    }
                                 </ul>
                             </div>
                         </nav>
