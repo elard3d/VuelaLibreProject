@@ -26,94 +26,74 @@ namespace VuelaLibreProject.Controllers
 
         }
 
-        public string LoggedUser()
+        //REGISTER USUARIO
+        [HttpGet]
+        public ActionResult Register() // GET
         {
-
-            var claims = HttpContext.User.Claims.FirstOrDefault();
-            var user = context.usuarios.Where(o => o.correoUsuario == claims.Value).FirstOrDefault();
-
-            return "el usuario logueado es " + user.nombreUsuario;
+            return View("Register", new Usuario());
 
         }
 
-
-        public string Index(string input)
+        [HttpPost]
+        public ActionResult Register(Usuario usuario, string contraseñaUsuario, string correo, string verContraseñaUsuario) // POST
         {
-            return CreateHash(input);
+
+            var correos = context.usuarios.ToList();
+            foreach (var item in correos)
+            {
+                if (item.correoUsuario == correo)
+                    ModelState.AddModelError("Correo", "El correo ya existe, ingrese otro correo");
+            }
+
+            if (ModelState.IsValid)
+            {
+                usuario.contraseñaUsuario = CreateHash(contraseñaUsuario);
+                usuario.verContraseñaUsuario = CreateHash(verContraseñaUsuario);
+                context.usuarios.Add(usuario);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Register", usuario);
         }
 
-        public IActionResult Login(string email, string password)
+        //LOGIN USUARIO
+        public IActionResult Login(Usuario account, string correoUsuario, string contraseñaUsuario)
         {
-
-            var user = context.usuarios
-                .Where(o => o.correoUsuario== email && o.contraseñaUsuario == CreateHash(password))
+            var user = context.usuarios.Where(o => o.correoUsuario == correoUsuario && o.contraseñaUsuario == CreateHash(contraseñaUsuario))
                 .FirstOrDefault();
 
             if (user != null)
             {
-
-                var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, email)
+                ViewBag.iduser = user.idUsuario;
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, correoUsuario)
                 };
+                var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
+                HttpContext.SignInAsync(claimsPrincipal);
+                ViewBag.userid = user.idUsuario;
 
-                var clainmsIdentity = new ClaimsIdentity(claims, "Login");
-                var clainmsPrincipal = new ClaimsPrincipal(clainmsIdentity);
-
-                HttpContext.SignInAsync(clainmsPrincipal);
-
-                return RedirectToAction("Index", "Ejercicios");
-
+                return RedirectToAction("Index");
             }
-
-
+            //ModelState.AddModelError("Login", "Usuario o contraseña incorrectos.");
             return View();
         }
-
-
         [HttpGet]
         public IActionResult Logout()
         {
-
             HttpContext.SignOutAsync();
-            return RedirectToAction("Login");
 
+            return RedirectToAction("Index");
         }
-
-        private string CreateHash(String input)
+        private string CreateHash(string input)
         {
-
             var sha = SHA256.Create();
-            input = input + configuration.GetValue<string>("Token");
+            input += configuration.GetValue<string>("Token");
             var hash = sha.ComputeHash(Encoding.Default.GetBytes(input));
 
             return Convert.ToBase64String(hash);
-
         }
-
-
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Register(string email, string password)
-        {
-            var user = new Usuario();
-
-            user.correoUsuario = email;
-
-            user.contraseñaUsuario = CreateHash(password);
-
-            context.usuarios.Add(user);
-
-            context.SaveChanges();
-
-
-            return RedirectToAction("Index", "Home");
-        }
-
     }
 }

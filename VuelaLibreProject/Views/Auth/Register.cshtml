@@ -1,67 +1,59 @@
-﻿<body class="my-login-page">
-    <section class="h-100">
-        <div class="container h-100">
-            <div class="row justify-content-md-center h-100">
-                <div class="card-wrapper">
-                    <div class="brand">
-                        <img src="~/img/logo.jpg" alt="bootstrap 4 login page">
-                    </div>
-                    <div class="card fat">
-                        <div class="card-body">
-                            <h4 class="card-title">Register</h4>
-                            <form method="POST" class="my-login-validation" novalidate="" action="/auth/register">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input id="name" type="text" class="form-control" name="name" required autofocus>
-                                    <div class="invalid-feedback">
-                                        What's your name?
-                                    </div>
-                                </div>
+﻿@{
+    var usuario = (Usuario)Model;
+}
 
-                                <div class="form-group">
-                                    <label for="email">E-Mail Address</label>
-                                    <input id="email" type="email" class="form-control" name="email" required>
-                                    <div class="invalid-feedback">
-                                        Your email is invalid
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input id="password" type="password" class="form-control" name="password" required data-eye>
-                                    <div class="invalid-feedback">
-                                        Password is required
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" name="agree" id="agree" class="custom-control-input" required="">
-                                        <label for="agree" class="custom-control-label">I agree to the <a href="#">Terms and Conditions</a></label>
-                                        <div class="invalid-feedback">
-                                            You must agree with our Terms and Conditions
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group m-0">
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                        Register
-                                    </button>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    Already have an account? <a href="index.html">Login</a>
-                                </div>
-                            </form>
+<body class="registro">
+    <div class="tm-section tm-bg-img" id="tm-section-1">
+        <div class="container text-md-center">
+            <div class="row justify-content-center pt-5 mt-5 mr-1">
+                <div class="col-md-4 formulario">
+                    <form action="/auth/register" method="post">
+                        <div class="form-group text-center">
+                            <br />
+                            <h3 class="titulo">Registrate </h3>
                         </div>
-                    </div>
-                    
+                        <div class="form-group mx-sm-4 ">
+                            <input type="text" value="@usuario.nombreUsuario" name="nombreUsuario" class="form-control" placeholder="Nombre" />
+                            <span class="messageerror">@Html.ValidationMessage("nombreUsuario")</span>
+                        </div>
+                        <div class="form-group mx-sm-4 pt-4">
+                            <input type="text" value="@usuario.apellidoUsuario" name="apellidoUsuario" class="form-control" placeholder="Apellidos" />
+                            <span class="messageerror">@Html.ValidationMessage("apellidoUsuario")</span>
+                        </div>
+                        <div class="form-group mx-sm-4 pt-4">
+                            <input type="text" value="@usuario.correoUsuario" name="correoUsuario" class="form-control" placeholder="Correo" />
+                            <span class="messageerror">@Html.ValidationMessage("correoUsuario")</span>
+                        </div>
+                        <div class="form-group mx-sm-4 pt-4">
+                            <input type="password" value="@usuario.contraseñaUsuario" name="contraseñaUsuario" class="form-control" placeholder="Contraseña" />
+                            <span class="messageerror">@Html.ValidationMessage("contraseñaUsuario")</span>
+                        </div>
+                        <div class="form-group mx-sm-4 pt-4">
+                            <input type="password" name="verContraseñaUsuario" class="form-control" placeholder="Verfificar Contraseña" />
+                            <span class="messageerror">@Html.ValidationMessage("verContraseñaUsuario")</span>
+                        </div>
+                        <div class="form-group mx-sm-4 pb-1">
+                            <input type="submit" class="btn btn-block registrara" value="Registrarse" />
+                        </div>
+                        <div _ngcontent-c6="" class="external-login ng-star-inserted">
+
+                            <!--Facebook Boton-->
+                            <div class="fb-login-button" data-size="large" data-button-type="continue_with"
+                                 data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"
+                                 data-width="">
+                            </div>
+                        </div>
+                        <br />
+                    </form>
+                    <form action="/auth/login" method="get">
+                        <div class="form-group text-center text-light">
+                            <span class="a">¿Ya tienes cuenta?</span>
+                            <button _ngcontent-c7="" class="btn btn-primary boton" tabindex="0">Entrar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</body>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="js/my-login.js"></script>
-</body>@*<div class="text-center">    <h1>Register</h1>    <br />    <form action="/auth/register" method="post">        <div class="form-group">            <label>Usuario :</label>            <input type="text" name="usuario" />        </div>        <div class="form-group">            <label> Contraseña: </label>            <input type="password" name="pass" />        </div>                <br />        <button class="btn btn-primary">Register</button>    </form>    </div>*@
