@@ -17,7 +17,8 @@ namespace VuelaLibreProject.Models.DB
 
         public DbSet<Departamentos> ListDepartamento { get; set; }
         public DbSet<Aerolineas> ListAerolineas { get; set; }
-        public DbSet<Pasaje> ListTicket { get; set; }
+        public DbSet<Pasaje> ListPasaje { get; set; }
+        public DbSet<TicketVuelo> ListTicketVuelo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,7 @@ namespace VuelaLibreProject.Models.DB
             modelBuilder.ApplyConfiguration(new DepartamentosMap());
             modelBuilder.ApplyConfiguration(new AerolineasMap());
             modelBuilder.ApplyConfiguration(new PasajeMap());
+            modelBuilder.ApplyConfiguration(new TicketVueloMap());
 
         }
     }

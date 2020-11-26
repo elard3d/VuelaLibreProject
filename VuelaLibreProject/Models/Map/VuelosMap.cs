@@ -15,8 +15,10 @@ namespace VuelaLibreProject.Models.Map
             builder.HasKey(o => o.idVuelo);
 
             builder.HasOne(o => o.aerolineas).WithMany().HasForeignKey(o => o.idAerolinea);
-            builder.HasOne(o => o.provinciaOrigen).WithMany().HasForeignKey(o=>o.idDepartamentoOrigen);
-            builder.HasOne(o => o.provinciaDestino).WithMany().HasForeignKey(o=>o.idDepartamentoDestino);
+            builder.HasOne(o => o.departamentoOrigen).WithMany().HasForeignKey(o=>o.idDepartamentoOrigen);
+            builder.HasOne(o => o.departamentoDestino).WithMany().HasForeignKey(o=>o.idDepartamentoDestino);
+            
+            
            
         }
     }

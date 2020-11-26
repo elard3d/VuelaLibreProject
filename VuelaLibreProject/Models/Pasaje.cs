@@ -15,6 +15,13 @@ namespace VuelaLibreProject.Models
         public string apellidos { get; set; }
         public int numAsiento{ get; set; }
 
+        public string origen { get; set; }
+        public string destino { get; set; }
+        public DateTime fechaCompra { get; set; }
+        public decimal precio { get; set; }
+        public DateTime fechaVuelo { get; set; }
+
+
         public Usuario usuario { get; set; }
     }
 }

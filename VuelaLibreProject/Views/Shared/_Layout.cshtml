@@ -72,19 +72,21 @@
 
                                         <li>
 
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Perfil"><b>@User.Claims.FirstOrDefault().Value</b></a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Perfil"><b>@User.Claims.FirstOrDefault().Value</b></a>
 
 
                                         </li>
 
 
-                                        if (@User.Claims.FirstOrDefault().Value == "admin@gmail.com")
-                                        {
-                                            <li class="nav-item">
-                                                <a href="/account/crearvuelo" class="nav-link text-dark">Crear Vuelo</a>
-                                            </li>
+                                        if (@User.Claims.FirstOrDefault().Value == "elard3d@hotmail.com")
+                                         {
+                                             
+                                             <li class="nav-item">
+                                                 <a class="nav-link text-dark" asp-area="" asp-controller="Fligths" asp-action="CrearVuelo">Crear Vuelo</a>
+                                             </li>
+                                          
                                         }
-                                    }
+                                     }
                                 </ul>
                             </div>
                         </nav>

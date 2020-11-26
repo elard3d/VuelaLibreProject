@@ -6,23 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using VuelaLibreProject.Models.DB;
 using VuelaLibreProject.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace VuelaLibreProject.Controllers
 {
     public class FligthsController : Controller
     {
         private VuelaLibreContext _context;
+        private readonly IConfiguration configuration;
 
-        public FligthsController (VuelaLibreContext context)
+        public FligthsController (VuelaLibreContext context, IConfiguration configuration)
         {
 
             this._context = context;
+            this.configuration = configuration;
 
         }
 
        
-        
-      
+
+
         public IActionResult ListaVuelos()
         {
             ViewBag.Vuelos = _context.vuelos.ToList();
@@ -44,6 +47,8 @@ namespace VuelaLibreProject.Controllers
             ViewBag.Departamentos = _context.ListDepartamento.ToList();
             ViewBag.Aerolineas = _context.ListAerolineas.ToList();
             ViewBag.fechaVuelo = DateTime.Now;
+
+            
 
 
             return View("CrearVuelo", new Vuelos());
@@ -74,7 +79,7 @@ namespace VuelaLibreProject.Controllers
         }
 
         [HttpGet]
-        public ActionResult ComprarVuelo(int id) {
+        public ActionResult ComprarVuelos(int id) {
 
             var vuel = _context.vuelos.Where(o => o.idVuelo == id).FirstOrDefault();
 
@@ -87,17 +92,34 @@ namespace VuelaLibreProject.Controllers
         }
 
 
-        
+
         [HttpPost]
-        public ActionResult ComprarVuelos(Vuelos vuelos, int id, string dni, string nombres, string apellidos, int numAsiento) {
+        public ActionResult ComprarVuelos(Vuelos vuelos, int id, string dni, string nombres, string apellidos, int numAsientos ) {
 
-            var ticket = new Pasaje();
-
+            var pasaje = new Pasaje();
             var vuel = _context.vuelos.Where(o => o.idVuelo == id).FirstOrDefault();
+            var nombreOrigen = _context.ListDepartamento.Where(o => o.nombreDepartamentos == vuel.departamentoOrigen.nombreDepartamentos).FirstOrDefault();
+            var nombreDestino = _context.ListDepartamento.Where(o => o.nombreDepartamentos == vuel.departamentoDestino.nombreDepartamentos).FirstOrDefault();
+            
 
 
-            return View();
-        
+            pasaje.dni = dni;
+            pasaje.nombres = nombres;
+            pasaje.apellidos = apellidos;
+            pasaje.numAsiento = numAsientos;
+            pasaje.origen = nombreOrigen.nombreDepartamentos;
+            pasaje.destino = nombreDestino.nombreDepartamentos;
+            pasaje.fechaCompra = DateTime.Now;
+            pasaje.precio = vuel.precioVuelo;
+            pasaje.fechaVuelo = vuel.fechaHoraVuelo;
+
+            _context.ListPasaje.Add(pasaje);
+            _context.SaveChanges();
+
+         
+            return View("index", "home");
+
+
         }
 
 

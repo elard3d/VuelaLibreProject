@@ -26,16 +26,13 @@ namespace VuelaLibreProject.Controllers
 
         }
 
-        public string LoggedUser()
+        public Usuario LoggerUser()
         {
-
-            var claims = HttpContext.User.Claims.FirstOrDefault();
-            var user = context.usuarios.Where(o => o.correoUsuario == claims.Value).FirstOrDefault();
-
-            
-            return "el usuario logueado es " + user.nombreUsuario;
-
+            var claim = HttpContext.User.Claims.FirstOrDefault();
+            var user = context.usuarios.Where(o => o.correoUsuario == claim.Value).FirstOrDefault();
+            return user;
         }
+
 
 
         public string Index(string input)
