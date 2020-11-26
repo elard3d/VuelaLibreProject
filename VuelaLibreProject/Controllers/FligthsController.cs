@@ -96,14 +96,22 @@ namespace VuelaLibreProject.Controllers
         
         }
 
+        private int GetLasId()
+        {
+            try {
+                return _context.ListPasaje.OrderByDescending(o => o.idPasaje).FirstOrDefault().idPasaje;
+            } catch(Exception e){
+                return 1;
+            }
+        }
 
 
         [HttpPost]
         public ActionResult ComprarVuelos( int id, string dni, string nombres, string apellidos, int numAsientos) {
 
-            var pasaje = new Pasaje();                    
+            var pasaje = new Pasaje();
 
-            
+            pasaje.idPasaje = GetLasId() + 1;
             pasaje.dni = dni;
             pasaje.nombres = nombres;
             pasaje.apellidos = apellidos;
@@ -118,29 +126,21 @@ namespace VuelaLibreProject.Controllers
             _context.ListPasaje.Add(pasaje);
             _context.SaveChanges();
 
-            //var pasajeX = _context.ListPasaje.Last();
+            
 
-            //int idPasaje=pasajeX.idPasaje;
-
-
-            //var ticketVuelo = new TicketVuelo();
-
-            //ticketVuelo.idPasaje = idPasaje;
-            //ticketVuelo.idVuelo = id;
-
-            //_context.ListTicketVuelo.Add(ticketVuelo);
-            //_context.SaveChanges();
+            int idPasaje = pasaje.idPasaje;
 
 
-            //pasaje.origen = nombreOrigen.nombreDepartamentos;
-            //pasaje.destino = nombreDestino.nombreDepartamentos;
-            //pasaje.fechaCompra = DateTime.Now;
-            //pasaje.precio = vuel.precioVuelo;
-            //pasaje.fechaVuelo = vuel.fechaHoraVuelo;
+            var ticketVuelo = new TicketVuelo();
+
+            ticketVuelo.idPasaje = idPasaje;
+            ticketVuelo.idVuelo = id;
+
+            _context.ListTicketVuelo.Add(ticketVuelo);
+            _context.SaveChanges();
 
 
-
-
+          
             return View("index", "home");
 
 
