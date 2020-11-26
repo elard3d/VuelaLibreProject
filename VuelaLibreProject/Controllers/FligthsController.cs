@@ -29,7 +29,7 @@ namespace VuelaLibreProject.Controllers
 
             var vuelos = _context.vuelos.ToList();
 
-            ViewBag.provincia = _context.ListProvincias.ToList();
+            ViewBag.departamento= _context.ListDepartamento.ToList();
             ViewBag.aerolinea = _context.ListAerolineas.ToList();
             
 
@@ -41,7 +41,7 @@ namespace VuelaLibreProject.Controllers
         public ActionResult CrearVuelo() // GET
         {
 
-            ViewBag.Provincias = _context.ListProvincias.ToList();
+            ViewBag.Departamentos = _context.ListDepartamento.ToList();
             ViewBag.Aerolineas = _context.ListAerolineas.ToList();
             ViewBag.fechaVuelo = DateTime.Now;
 
@@ -68,10 +68,36 @@ namespace VuelaLibreProject.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            ViewBag.Provincias = _context.ListProvincias.ToList();
-            ViewBag.Aerolineas = _context.ListAerolineas.ToList();
+           
             return View("CrearVuelo",vuel);
 
+        }
+
+        [HttpGet]
+        public ActionResult ComprarVuelo(int id) {
+
+            var vuel = _context.vuelos.Where(o => o.idVuelo == id).FirstOrDefault();
+
+            ViewBag.Departamentos= _context.ListDepartamento.ToList();
+            ViewBag.Aerolineas = _context.ListAerolineas.ToList();
+
+
+            return View(vuel);
+        
+        }
+
+
+        
+        [HttpPost]
+        public ActionResult ComprarVuelos(Vuelos vuelos, int id, string dni, string nombres, string apellidos, int numAsiento) {
+
+            var ticket = new Pasaje();
+
+            var vuel = _context.vuelos.Where(o => o.idVuelo == id).FirstOrDefault();
+
+
+            return View();
+        
         }
 
 

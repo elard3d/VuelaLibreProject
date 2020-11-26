@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace VuelaLibreProject.Models.Map
 {
-    public class ProvinciasMap : IEntityTypeConfiguration<Provincias>
+    public class DepartamentosMap : IEntityTypeConfiguration<Departamentos>
     {
-        public void Configure(EntityTypeBuilder<Provincias> builder)
+        public void Configure(EntityTypeBuilder<Departamentos> builder)
         {
-            builder.ToTable("Provincias");
-            builder.HasKey(o => o.idProvincia);
+            builder.ToTable("Departamentos");
+            builder.HasKey(o => o.idDepartamentos);
         }
     }
 }

@@ -12,6 +12,6 @@ namespace VuelaLibreProject.Models
         public int idVuelo { get; set; }
 
         public Vuelos vuelos { get; set; }
-        public Tickets tickets { get; set; }
+        public Pasaje tickets { get; set; }
     }
 }

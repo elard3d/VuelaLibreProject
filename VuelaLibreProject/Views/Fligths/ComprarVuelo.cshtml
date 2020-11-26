@@ -14,7 +14,7 @@
         <div class="container ie-h-align-center-fix" style="padding:5%">
 
 
-            <form action="/account/comprar" method="post" class="was-validated">
+            <form action="comprarVuelo" method="post" class="was-validated">
                 <div class="row">
 
                     <div class="col-12 col-md-8" style="border-style:solid">
@@ -28,17 +28,17 @@
                         <div class="row" style=" font-size: 200%">
                             <div class="col-6 col-md-4" style="padding: 3%;">
                                 <div style="font-size: 80%">Origen: </div>
-                                <b>@vuelo.idProvinciaOrigen </b>
+                                <b>@vuelo.provinciaOrigen.nombreDepartamentos </b>
                                 <i class="fa fas fa-plane-departure tm-color-primary tm-margin-b-20"></i>
                             </div>
                             <div class="col-6 col-md-4" style="padding: 3%;">
                                 <div style="font-size: 80%">Destino: </div>
-                                <b>@vuelo.idProvinciaDestino </b>
+                                <b>@vuelo.provinciaDestino.nombreDepartamentos </b>
                                 <i class="fa fas fa-plane-arrival tm-color-primary tm-margin-b-20"></i>
                             </div>
                             <div class="col-6 col-md-4" style="padding: 3%;">
                                 <div style="font-size: 80%">Aerolinea: </div>
-                                <b>Aerolinea </b>
+                                <b>@vuelo.aerolineas.nombreAerolinea </b>
                                 <i class="fa fas fa-plane tm-color-primary tm-margin-b-20"></i>
                             </div>
                         </div>
@@ -51,12 +51,12 @@
                             </div>
                             <div class="col-6 col-md-4" style="padding: 3%;">
                                 <div style="font-size: 80%">Fecha/Hr. Llegada: </div>
-                                <b>Calcular</b>
+                                <b>CALCULAR</b>
                                 <i class="fa fas fa-plane-arrival tm-color-primary tm-margin-b-20"></i>
                             </div>
                             <div class="col-6 col-md-4" style="padding: 3%;">
                                 <div style="font-size: 80%">Precio: </div>
-                                <b>$ @vuelo.</b>
+                                <b>$ @vuelo.precioVuelo</b>
                                 <i class="fa fas fa-money-bill tm-color-primary tm-margin-b-20"></i>
                             </div>
                         </div>

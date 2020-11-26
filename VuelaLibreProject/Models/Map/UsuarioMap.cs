@@ -14,7 +14,7 @@ namespace VuelaLibreProject.Models.Map
             builder.ToTable("Usuario");
             builder.HasKey(o => o.idUsuario);
 
-            builder.HasMany(o => o.ticket).WithOne().HasForeignKey(o => o.idTicket);
+            builder.HasMany(o => o.ticket).WithOne().HasForeignKey(o => o.idPasaje);
         }
     }
 }

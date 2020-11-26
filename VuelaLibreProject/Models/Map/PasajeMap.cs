@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace VuelaLibreProject.Models.Map
 {
-    public class TicketsMap : IEntityTypeConfiguration<Tickets>
+    public class PasajeMap : IEntityTypeConfiguration<Pasaje>
     {
-        public void Configure(EntityTypeBuilder<Tickets> builder)
+        public void Configure(EntityTypeBuilder<Pasaje> builder)
         {
-            builder.ToTable("Tickets");
+            builder.ToTable("Pasaje");
 
-            builder.HasKey(o => o.idTicket);
+            builder.HasKey(o => o.idPasaje);
 
             builder.HasOne(o => o.usuario).WithMany().HasForeignKey(o => o.idUsuario);
         }

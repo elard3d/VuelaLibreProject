@@ -5,10 +5,15 @@ using System.Threading.Tasks;
 
 namespace VuelaLibreProject.Models
 {
-    public class Tickets
+    public class Pasaje
     {
-        public int idTicket { get; set; }
+        public int idPasaje { get; set; }
         public int idUsuario { get; set; }
+
+        public string dni { get; set; }
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
+        public int numAsiento{ get; set; }
 
         public Usuario usuario { get; set; }
     }

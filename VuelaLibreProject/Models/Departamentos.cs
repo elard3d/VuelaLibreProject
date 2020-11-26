@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace VuelaLibreProject.Models
 {
-    public class Provincias
+    public class Departamentos
     {
-        public int idProvincia { get; set; }
-        public string nombreProvincia{ get; set; }
+        public int idDepartamentos { get; set; }
+        public string nombreDepartamentos { get; set; }
 
        
     }
