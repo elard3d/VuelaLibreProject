@@ -27,8 +27,12 @@ a:focus {
 .tm-margin-b-20 { margin-bottom: 20px; }
 .tm-p-4 { padding: 2rem!important; }
 .tm-color-white { color: white; }
-.tm-color-primary {	color: #ee5057; }
-.tm-bg-primary { background: #ee5057; }
+.tm-color-primary {
+	color: #4747ed;
+}
+.tm-bg-primary {
+	background: #4747ed;
+}
 .tm-bg-gray { background: #F4F4F4; }
 .tm-bg-white { background: white; }
 .tm-bg-dark-blue { background: #1f3646; }
@@ -96,7 +100,7 @@ p {
 .nav-link.active,
 .nav-link:hover {
 	color: white;
-	background: #ee5057;	
+	background: #4747ed;
 }
 
 .tm-top-bar .navbar-expand-lg .navbar-nav .nav-link { padding: 50px 35px; }
@@ -169,14 +173,14 @@ p {
 	padding: 0.6rem 0.75rem;
 }
 
-.form-control:focus {
-	border-color: #ee5057;
-	box-shadow: 0 0 0 0.2rem rgba(238,80,87,.25);
-}
+	.form-control:focus {
+		border-color: #4747ed;
+		box-shadow: 0 0 0 0.2rem rgba(238,80,87,.25);
+	}
 
 .btn-primary {
-	background-color: #ee5057;
-	border-color: #ee5057;
+	background-color: #4747ed;
+	border-color: #4747ed;
 	border-radius: 0;
 	cursor: pointer;
 	font-size: 0.7rem;
@@ -185,19 +189,19 @@ p {
 	text-transform: uppercase;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
-	background-color: #d53239;
-	border-color: #d53239;
-}
+	.btn-primary:hover,
+	.btn-primary:focus,
+	.btn-primary:active {
+		background-color: #00aeff;
+		border-color: #00aeff;
+	}
 
 .tm-search-form .tm-form-element { padding: 0 5px; }
 .tm-form-element { position: relative; }
 .tm-form-element:last-child { margin-right: 0; }
 
 .tm-form-element-icon {
-	color: #ee5057;
+	color: #4747ed;
 	position: absolute;
 	top: 10px;
 	left: 15px;
@@ -250,7 +254,7 @@ select.tm-select::-ms-expand { display: none; }
 .tm-pb-4 { padding-bottom: 100px; }
 
 .tm-section-2 {
-	background: #ee5057;
+	background: #4747ed;
 	padding-top: 50px;
 	position: relative;
 }
@@ -281,11 +285,11 @@ select.tm-select::-ms-expand { display: none; }
 	text-transform: uppercase;
 }
 
-.tm-btn-white-bordered:hover,
-.tm-btn-white-bordered:focus {
-	color: #ee5057;
-	background: white;	
-}
+	.tm-btn-white-bordered:hover,
+	.tm-btn-white-bordered:focus {
+		color: #4747ed;
+		background: white;
+	}
 
 .slick-dots { bottom: -35px; }
 
@@ -343,7 +347,9 @@ select.tm-select::-ms-expand { display: none; }
 	transition: all 0.3s ease;
 }
 
-.tm-recommended-item:hover h4 { color: #ee5057; }
+.tm-recommended-item:hover h4 {
+	color: #4747ed;
+}
 .tm-media { align-items: stretch; }
 
 .tm-media,

@@ -13,5 +13,7 @@ namespace VuelaLibreProject.Models
         public string correoUsuario { get; set; }
         public string contraseñaUsuario { get; set; }
         public string verContraseñaUsuario { get; set; }
+
+        public List<Tickets> ticket { get; set; }
     }
 }

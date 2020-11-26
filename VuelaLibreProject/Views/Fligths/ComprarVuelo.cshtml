@@ -1,7 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Comprar Vuelo";
 }
 
 @{
@@ -30,12 +28,12 @@
                         <div class="row" style=" font-size: 200%">
                             <div class="col-6 col-md-4" style="padding: 3%;">
                                 <div style="font-size: 80%">Origen: </div>
-                                <b>@vuelo.salida </b>
+                                <b>@vuelo.idProvinciaOrigen </b>
                                 <i class="fa fas fa-plane-departure tm-color-primary tm-margin-b-20"></i>
                             </div>
                             <div class="col-6 col-md-4" style="padding: 3%;">
                                 <div style="font-size: 80%">Destino: </div>
-                                <b>@vuelo.destino </b>
+                                <b>@vuelo.idProvinciaDestino </b>
                                 <i class="fa fas fa-plane-arrival tm-color-primary tm-margin-b-20"></i>
                             </div>
                             <div class="col-6 col-md-4" style="padding: 3%;">

@@ -13,6 +13,11 @@ namespace VuelaLibreProject.Models.Map
         {
             builder.ToTable("Vuelos");
             builder.HasKey(o => o.idVuelo);
+
+            builder.HasOne(o => o.aerolineas).WithMany().HasForeignKey(o => o.idAerolinea);
+            builder.HasOne(o => o.provinciaOrigen).WithMany().HasForeignKey(o=>o.idProvinciaOrigen);
+            builder.HasOne(o => o.provinciaDestino).WithMany().HasForeignKey(o=>o.idProvinciaDestino);
+           
         }
     }
 }

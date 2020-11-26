@@ -32,6 +32,7 @@ namespace VuelaLibreProject.Controllers
             var claims = HttpContext.User.Claims.FirstOrDefault();
             var user = context.usuarios.Where(o => o.correoUsuario == claims.Value).FirstOrDefault();
 
+            
             return "el usuario logueado es " + user.nombreUsuario;
 
         }
@@ -42,6 +43,15 @@ namespace VuelaLibreProject.Controllers
             return CreateHash(input);
         }
 
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
         public IActionResult Login(string email, string password)
         {
 

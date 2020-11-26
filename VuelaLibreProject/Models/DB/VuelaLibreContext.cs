@@ -15,11 +15,18 @@ namespace VuelaLibreProject.Models.DB
 
         public virtual DbSet<Usuario> usuarios { get; set; }
 
+        public DbSet<Provincias> ListProvincias{ get; set; }
+        public DbSet<Aerolineas> ListAerolineas { get; set; }
+        public DbSet<Tickets> ListTicket { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new UsuarioMap());
             modelBuilder.ApplyConfiguration(new VuelosMap());
+            modelBuilder.ApplyConfiguration(new ProvinciasMap());
+            modelBuilder.ApplyConfiguration(new AerolineasMap());
+            modelBuilder.ApplyConfiguration(new TicketsMap());
 
         }
     }

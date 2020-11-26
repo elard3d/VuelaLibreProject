@@ -28,8 +28,7 @@
 
                         <nav class="navbar navbar-expand-lg narbar-light">
                             <a class="navbar-brand mr-auto" href="#">
-                                <img src="~/img/logo.png" alt="Site logo">
-                                Level
+                                <img src="" alt="Site logo">
                             </a>
                             <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -37,7 +36,7 @@
                             <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="">Home</a>
+                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                     </li>
                                     <li class="nav-item">
 
@@ -52,12 +51,12 @@
                                     @if (!User.Identity.IsAuthenticated)
                                     {
                                         <li>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><b>Registrarse </b><i class="fas fa-angle-right"></i> </a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register"><b>Registrarse </b><i class="fas fa-angle-right"></i> </a>
 
                                         </li>
 
                                         <li>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><b>Iniciar Sessión </b><i class=" fas fa-sign-in-alt"></i></a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login"><b>Iniciar Sessión </b><i class=" fas fa-sign-in-alt"></i></a>
 
                                         </li>
                                     }
@@ -66,14 +65,14 @@
 
                                         <li>
 
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout"><b>LogOut </b></a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout"><b>LogOut </b></a>
 
 
                                         </li>
 
                                         <li>
 
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Perfil"><b>@User.Claims.FirstOrDefault().Value</b></a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Perfil"><b>@User.Claims.FirstOrDefault().Value</b></a>
 
 
                                         </li>
@@ -104,9 +103,7 @@
             <div class="container">
                 <div class="row">
                     <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 tm-margin-b-0">
-                        Copyright &copy; <span class="tm-current-year">2018</span> Your Company
-
-                        - Design: Tooplate
+                        Copyright &copy; <span class="tm-current-year">2020</span> - Vuela Libre&trade;
                     </p>
                 </div>
             </div>
