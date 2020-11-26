@@ -87,6 +87,7 @@ namespace VuelaLibreProject.Controllers
 
             ViewBag.Departamentos= _context.ListDepartamento.ToList();
             ViewBag.Aerolineas = _context.ListAerolineas.ToList();
+            ViewBag.Pasajes = _context.ListPasaje.ToList();
 
             ViewBag.NumeroPajases = numeroPasajes;
 
@@ -134,6 +135,47 @@ namespace VuelaLibreProject.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult BuscarVuelo(Vuelos vuelo, int origen, int destino, DateTime fechaVuelo, int iduser)
+        {
+            //var departamentOrigen = _context.ListDepartamento.Where(o => o.nombreDepartamentos == origen).FirstOrDefault();
+            //var departamentDestino = _context.ListDepartamento.Where(o => o.nombreDepartamentos == destino).FirstOrDefault();
+            //var mostrar = _context.vuelos.Where(o => o.idDepartamentoOrigen == departamentOrigen.idDepartamentos && o.idDepartamentoDestino == departamentDestino.idDepartamentos && o.fechaHoraVuelo >= fechaVuelo).ToList();
+            var mostrar = _context.vuelos.Where(o=>o.idDepartamentoOrigen==origen&&o.idDepartamentoDestino==destino&&o.fechaHoraVuelo>=fechaVuelo).ToList();
+            if (mostrar != null)
+            {
+                var now = DateTime.Now;
+                int fechaResultado = DateTime.Compare(fechaVuelo, now);
+                if (fechaResultado < 0)
+                    ModelState.AddModelError("FechaIda", "La fecha de salida debe ser mayor a la actual");
+                if (fechaVuelo == null)
+                    ModelState.AddModelError("FechaIda1", "El campo fecha es requerido");
+                if (origen == null)
+                    ModelState.AddModelError("Origen", "El campo origen es requerido");
+                if (destino == null)
+                    ModelState.AddModelError("Destino", "El campo destino es requerido");
+                ViewBag.userid = iduser;
+                // return View("Index", vuelo);
+            }
+            if (ModelState.IsValid)
+            {
+                return View(mostrar);
+            }
+            else
+            {
+                var vueloBuscar = _context.vuelos.ToList();
+
+                ViewBag.Departamentos = _context.ListDepartamento.ToList();
+                ViewBag.Aerolineas = _context.ListAerolineas.ToList();
+                ViewBag.fechaVuelo = DateTime.Now;
+
+                return View("ListaVuelos", vueloBuscar);
+            }
+        }
+
 
     }
+
+
+
 }

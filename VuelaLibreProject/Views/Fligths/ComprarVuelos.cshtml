@@ -3,7 +3,11 @@
 }
 
 @{
+    ViewData["Title"] = "Crear Vuelo";
     var vuelo = (Vuelos)Model;
+    var departamentos = ((List<Departamentos>)ViewBag.Departamentos);
+    var aerolineas = ((List<Aerolineas>)ViewBag.Aerolineas);
+    var pasajesComprados = ((List<Pasaje>)ViewBag.Pasajes);
 }
 
 <form action="comprarVuelos" method="post" class="was-validated">
@@ -100,9 +104,25 @@
 
                                 <label>Numero de Asiento: </label>
                                 <select name="pasajes[@i].numAsiento" class="form-control">
-                                    <option value="1"> 1</option>
-                                    <option value="2"> 2</option>
-                                    <option value="3"> 3</option>
+
+                                    @for (int j = 0; j < vuelo.asientos; j++)
+                                    {
+                                        @foreach (var numeroAsiento in pasajesComprados)
+                                        {
+
+                                            if (numeroAsiento != j)
+                                            {
+                                                <option value="@j"> @j </option>
+                                                break;
+                                            }
+                                            else
+                                            {
+
+                                                continue;
+                                            }
+
+                                        }
+                                    }
 
                                 </select>
 

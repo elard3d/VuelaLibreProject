@@ -33,7 +33,18 @@ namespace VuelaLibreProject.Controllers
 
         public IActionResult Perfil()
         {
-            ViewBag.Usuarios = _context.usuarios.ToList();
+            ViewBag.Usuarios = _context.usuarios.Where(o=>o.idUsuario == LoggerUser().idUsuario).FirstOrDefault();
+
+            ViewBag.Pasajes = _context.ListPasaje.Where(o => o.idUsuario == LoggerUser().idUsuario).ToList();
+            
+
+            ViewBag.Departamentos = _context.ListDepartamento.ToList();
+            ViewBag.Aerolineas = _context.ListAerolineas.ToList();
+            ViewBag.Vuelos = _context.vuelos.ToList();
+            
+            
+            ViewBag.TicketVuelo= _context.ListTicketVuelo.ToList();
+
 
             return View();
         }
