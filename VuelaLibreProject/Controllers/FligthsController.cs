@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using VuelaLibreProject.Models.DB;
-using VuelaLibreProject.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Linq;
+using VuelaLibreProject.Models;
+using VuelaLibreProject.Models.DB;
 
 namespace VuelaLibreProject.Controllers
 {
@@ -84,17 +81,20 @@ namespace VuelaLibreProject.Controllers
         }
 
         [HttpGet]
-        public ActionResult ComprarVuelos(int id) {
+        public ActionResult ComprarVuelos(int id, int numeroPasajes = 1) {
 
             var vuel = _context.vuelos.Where(o => o.idVuelo == id).FirstOrDefault();
 
             ViewBag.Departamentos= _context.ListDepartamento.ToList();
             ViewBag.Aerolineas = _context.ListAerolineas.ToList();
 
+            ViewBag.NumeroPajases = numeroPasajes;
+
 
             return View(vuel);
         
         }
+
 
         private int GetLasId()
         {
@@ -105,42 +105,30 @@ namespace VuelaLibreProject.Controllers
             }
         }
 
-
+     
         [HttpPost]
-        public ActionResult ComprarVuelos( int id, string dni, string nombres, string apellidos, int numAsientos) {
+        public ActionResult ComprarVuelos( Pasaje []pasajes, int idVuelo) {
 
-            var pasaje = new Pasaje();
+            foreach (var pasaje in pasajes) {
 
-            pasaje.idPasaje = GetLasId() + 1;
-            pasaje.dni = dni;
-            pasaje.nombres = nombres;
-            pasaje.apellidos = apellidos;
-            pasaje.numAsiento =Convert.ToInt32(numAsientos);
+                pasaje.idPasaje = GetLasId() + 1;
+                pasaje.idUsuario = LoggerUser().idUsuario;
+                pasaje.fechaCompra = DateTime.Now;
+                pasaje.idVuelo = idVuelo;
+                _context.ListPasaje.Add(pasaje);
+                _context.SaveChanges();
 
-            pasaje.idUsuario = LoggerUser().idUsuario;
+                var ticketVuelo = new TicketVuelo();
+                int idPasaje = pasaje.idPasaje;
 
-            pasaje.fechaCompra = DateTime.Now;
+                ticketVuelo.idPasaje = idPasaje;
+                ticketVuelo.idVuelo = idVuelo;
 
-            pasaje.idVuelo = id;
+                _context.ListTicketVuelo.Add(ticketVuelo);
+                _context.SaveChanges();
 
-            _context.ListPasaje.Add(pasaje);
-            _context.SaveChanges();
-
-            
-
-            int idPasaje = pasaje.idPasaje;
-
-
-            var ticketVuelo = new TicketVuelo();
-
-            ticketVuelo.idPasaje = idPasaje;
-            ticketVuelo.idVuelo = id;
-
-            _context.ListTicketVuelo.Add(ticketVuelo);
-            _context.SaveChanges();
-
-
-          
+            }
+                     
             return View("index", "home");
 
 
