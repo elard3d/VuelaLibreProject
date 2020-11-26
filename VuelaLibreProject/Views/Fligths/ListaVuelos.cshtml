@@ -2,66 +2,261 @@
     ViewData["Title"] = "Lista de Vuelos";
 }
 
+<div class="bg-theme-overlay">
 
+    <section class="section__breadcrumb ">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="text-capitalize text-white ">Lista Vuelos</h2>
+                    <ul class="list-inline ">
+                        
+                        <li class="list-inline-item">
+                            <a href="#" class="text-white">
+                                Flights
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="text-white">
+                                Lista Vuelos
+                            </a>
+                        </li>
 
-<div class="container">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="navbar">
-        <ul class="flex-grow-1">
-            <li class="nav-item">
-                <a class="btn btn-info" asp-area="" asp-controller="Fligths" asp-action="CrearVuelo">Crear Vuelo</a>
-            </li>
-        </ul>
-    </div>
-    <br />
-
-
-    <h2>Lista de Vuelos</h2>
-
-    <br />
-
-   
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Origen</th>
-                <th>Destino</th>
-                <th>Aerolinea</th>
-                <th>Fecha/hora</th>
-                <th>Tiempo de Vuelo</th>
-                <th>Nº Asientos</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tbody style="padding: 2px">
-
-            @{
-                var vuelos = ((List<Vuelos>)Model);
-            }
-
-
-            @foreach (var item in vuelos)
-            {
-                <tr style="padding: 2px">
-                    <td>@item.idVuelo</td>
-                    <td><b>@item.departamentoOrigen.nombreDepartamentos</b></td>
-                    <td><b>@item.departamentoDestino.nombreDepartamentos</b></td>
-                    <td><b>@item.aerolineas.nombreAerolinea</b></td>
-                    <td>@item.fechaHoraVuelo</td>
-                    <td>@item.tiempoVuelo Min</td>
-                    <td>@item.asientos</td>
-                    <td>S/@item.asientos</td>
-                    <td>
-
-                        <input name="numeroPasajes" type="number" value="1" min="1" max="10" />
-
-                        <a class="btn btn-success" href="comprarVuelos?id=@item.idVuelo">Comprar</a>
-                    </td>
-                </tr>
-
-            }
-        </tbody>
-    </table>
 </div>
+<!-- END BREADCRUMB -->
+    </header>
+<div class="clearfix"></div>
+
+<!-- LISTING LIST -->
+<section class="profile__agents">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <!-- FORM FILTER -->
+                <div class="products__filter mb-30">
+                    <div class="products__filter__group">
+                        <div class="products__filter__header">
+
+                            <h5 class="text-center text-capitalize">find agents</h5>
+                        </div>
+                        <div class="products__filter__body">
+                            <div class="form-group">
+                                <label>Enter Agent name</label>
+                                <input type="text" class="form-control" placeholder="Enter agent name">
+
+                            </div>
+                            <div class="form-group">
+                                <label>All Categories</label>
+                                <select class="select_option wide">
+                                    <option data-display="All Categories">All Categories</option>
+
+                                    <option>Apartment</option>
+                                    <option>Bungalow</option>
+                                    <option>Condo</option>
+                                    <option>House</option>
+                                    <option>Land</option>
+                                    <option>Single Family</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label>All Cities</label>
+                                <select class="select_option wide">
+                                    <option data-display="All City">All Cities</option>
+                                    <option>Atlanta</option>
+                                    <option>Florida</option>
+                                    <option>Los Angeles</option>
+                                    <option>Miami</option>
+                                    <option>New York</option>
+                                    <option>Orlando</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="products__filter__footer">
+                            <div class="form-group mb-0">
+                                <button class="btn btn-primary text-capitalize btn-block">
+                                    search agents <i class="fa fa-search ml-1"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END FORM FILTER -->
+                <!-- ARCHIVE CATEGORY -->
+                <aside class=" wrapper__list__category">
+                    <!-- CATEGORY -->
+                    <div class="widget widget__archive">
+                        <div class="widget__title">
+                            <h5 class="text-dark mb-0 text-center">Categories Property</h5>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#" class="text-capitalize">
+                                    apartement
+                                    <span class="badge badge-primary">14</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-capitalize">
+                                    villa
+                                    <span class="badge badge-primary">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-capitalize">
+                                    family house
+                                    <span class="badge badge-primary">2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-capitalize">
+                                    modern villa
+                                    <span class="badge badge-primary">8</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-capitalize">
+                                    town house
+                                    <span class="badge badge-primary">10</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-capitalize">
+                                    office
+                                    <span class="badge badge-primary">12</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END CATEGORY -->
+                </aside>
+                <!-- End ARCHIVE CATEGORY -->
+
+            </div>
+
+            
+
+            <div class="col-lg-8">
+                @{
+                    var vuelos = ((List<Vuelos>)Model);
+                }
+
+
+                @foreach (var item in vuelos)
+                {
+                    <div class="row no-gutters">
+                        <div class="col-lg-12 cards mt-0">
+                            <div class="row">
+
+                                <div class="col-md-6 col-lg-6">
+                                    <a href="#" class="profile__agents-avatar">
+                                        <img src="images/500x400.jpg" alt="" class="img-fluid ">
+                                        <div class="total__property-agent">20 listing</div>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-lg-6 my-auto">
+                                    <div class="profile__agents-info">
+                                        <h5 class="text-capitalize mb-0">
+                                            <a>@item.departamentoOrigen.nombreDepartamentos > @item.departamentoDestino.nombreDepartamentos</a>
+                                        </h5>
+                                        <p class="text-capitalize mb-1">Origen/Destino</p>
+
+                                        <ul class="list-unstyled mt-2">
+                                            <li>
+                                                <a class="text-capitalize">
+                                                    <span>
+                                                        <i class="fa fa-clock-o"></i>Tiempo :
+                                                    </span> @item.tiempoVuelo
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="text-capitalize">
+                                                    <span>
+                                                        <i class="fa fa-users"></i>Asientos :
+                                                    </span> @item.asientos
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="text-capitalize">
+                                                    <span>
+                                                        <i class="fa fa-calendar"></i>Fecha:
+                                                    </span> @item.fechaHoraVuelo
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="text-capitalize">
+                                                    <span>
+                                                        <i class="fa fa-money"></i>Precio :
+                                                    </span> S/@item.precioVuelo
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <p class="mb-0 mt-3">
+                                            Cantidad de Pasajes :
+                                            <input name="numeroPasajes" type="number" value="1" min="1" max="10" />
+
+
+
+                                        </p>
+                                        <p class="mb-0 mt-3">
+
+                                            <a class="btn btn-success btn-block" href="comprarVuelos?id=@item.idVuelo">
+                                                Comprar <i class="fa fa-shopping-bag  ml-1"></i>
+                                            </a>
+
+                                            
+
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                 }
+                </div>
+                
+
+            </div>
+            }
+    </div>
+</section>
+
+<!-- END LISTING LIST -->
+<!-- CALL TO ACTION -->
+<section class="cta-v1 py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-9">
+                <h2 class="text-uppercase text-white">Looking To Sell Or Rent Your Property?</h2>
+                <p class="text-capitalize text-white">
+                    We Will Assist You In The Best And Comfortable Property Services
+                    For You
+                </p>
+
+            </div>
+            <div class="col-lg-3">
+                <a href="#" class="btn btn-light text-uppercase ">
+                    request a quote
+                    <i class="fa fa-angle-right ml-3 arrow-btn "></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END CALL TO ACTION -->
+
+
+
+

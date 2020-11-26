@@ -4,264 +4,328 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - VuelaLibreProject</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">  <!-- Google web font "Open Sans" -->
-    <link rel="stylesheet" href="~/font-awesome-4.7.0/css/font-awesome.min.css">                <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/css/bootstrap.min.css">                                      <!-- Bootstrap style -->
-    <link rel="stylesheet" type="text/css" href="~/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="~/slick/slick-theme.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/datepicker.css" />
-    <link rel="stylesheet" href="~/css/datepicker.css">
-    <link rel="stylesheet" href="~/css/tooplate-style.css">
-    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@
-    <link rel="stylesheet" type="text/css" href="~/css/my-login.css">
+    <meta name="description" content="Rethouse - Real Estate HTML Template">
+    <meta name="keywords" content="Real Estate, Property, Directory Listing, Marketing, Agency" />
+    <meta name="author" content="mardianto - retenvi.com">
+    <title>Rethouse - Real Estate HTML Template</title>
+
+    <!-- Facebook and Twitter integration -->
+    <!--<meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />-->
+
+    <link rel="manifest" href="site.webmanifest">
+    <!-- favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="theme-color" content="#3454d1">
+    <link href="~/css/styles.css" rel="stylesheet">
+
 
 
 </head>
 <body>
-    <div class="tm-main-content" id="top">
-        <header>
-            <div class="tm-top-bar-bg"></div>
-            <div class="tm-top-bar" id="tm-top-bar">
-                <!-- Top Navbar -->
-                <div class="container">
-                    <div class="row">
 
-                        <nav class="navbar navbar-expand-lg narbar-light">
-                            <a class="navbar-brand mr-auto" href="#">
-                                <img src="" alt="Site logo">
-                            </a>
-                            <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
-                                <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-
-                                        <a class="nav-link" asp-area="" asp-controller="Fligths" asp-action="ListaVuelos">Vuelos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="">Ofertas</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="">Aerolíneas</a>
-                                    </li>
-                                    @if (!User.Identity.IsAuthenticated)
-                                    {
-                                        <li>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register"><b>Registrarse </b><i class="fas fa-angle-right"></i> </a>
-
-                                        </li>
-
-                                        <li>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login"><b>Iniciar Sessión </b><i class=" fas fa-sign-in-alt"></i></a>
-
-                                        </li>
-                                    }
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
-
-                                        <li>
-
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout"><b>LogOut </b></a>
-
-
-                                        </li>
-
-                                        <li>
-
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Perfil"><b>@User.Claims.FirstOrDefault().Value</b></a>
-
-
-                                        </li>
-
-
-                                        if (@User.Claims.FirstOrDefault().Value == "elard3d@hotmail.com")
-                                         {
-                                             
-                                             <li class="nav-item">
-                                                 <a class="nav-link text-dark" asp-area="" asp-controller="Fligths" asp-action="CrearVuelo">Crear Vuelo</a>
-                                             </li>
-                                          
-                                        }
-                                     }
-                                </ul>
+    <!-- HEADER -->
+    <header>
+        <div class="topbar d-none d-sm-block">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="topbar-left">
+                            <div class="topbar-text">
+                                Monday, March 22, 2020
                             </div>
-                        </nav>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="list-unstyled topbar-right">
+                            <ul class="topbar-link">
+
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <li><a asp-area="" asp-controller="Auth" asp-action="Login"><b>Login </b></a></li>
+                                    <li><a asp-area="" asp-controller="Auth" asp-action="Register"><b>Register </b></a></li>
+                                } @if (User.Identity.IsAuthenticated)
+                                {
+                                        <li>
+
+                                            <a asp-area="" asp-controller="Auth" asp-action="Logout"><b>LogOut </b></a>
+
+
+                                        </li>
+
+                                        <li>
+
+                                            <a asp-area="" asp-controller="User" asp-action="Perfil"><b>@User.Claims.FirstOrDefault().Value</b></a>
+
+
+                                        </li>
+                                        
+
+                                }
+                            </ul>
+                            <ul class="topbar-sosmed">
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- END NAVBAR TOP -->
+                <nav class="navbar navbar-hover navbar-expand-lg navbar-soft">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">
+                            <img src="~/img/logo-blue-stiky.png" alt="" class="img-fluid">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav99">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="main_nav99">
+                            <ul class="navbar-nav  mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action=""><b>Home</b></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Fligths" asp-action="ListaVuelos"><b>Vuelos</b></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contact.html"> Ofertas </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contact.html"> Aerolineas </a>
+                                </li>
+                            </ul>
+
+
+                            <!-- Search bar.// -->
+                            <ul class="navbar-nav">
+                                <li>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        if (@User.Claims.FirstOrDefault().Value == "elard3d@hotmail.com")
+                                        {
+                                            <a href="/Fligths/CrearVuelo" class="btn btn-primary text-capitalize" >
+                                                <i class="fa fa-plus-circle mr-1" ></i> Crear Vuelo
+                                            </a>
+                                        }
+                                    }
+
+                                </li>
+                            </ul>
+
+                        </div> <!-- navbar-collapse.// -->
+                    </div>
+                </nav>
+            </header>
+            <!-- END HEADER -->
+
+            <div>
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
             </div>
-        </header>
 
-        <div>
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+            <footer>
+                <div class="wrapper__footer bg-theme-footer">
+                    <div class="container">
+                        <div class="row">
+                            <!-- ADDRESS -->
+                            <div class="col-md-4">
+                                <div class="widget__footer">
+                                    <figure>
+                                        <img src="images/logo-blue.png" alt="" class="logo-footer">
+                                    </figure>
+                                    <p>
+                                        Rethouse Real Estate is a premium Property template based on Bootstrap 4. Rethouse Real
+                                        Estate helped thousands of clients to find the right property for their needs.
 
-        <footer class="tm-bg-dark-blue">
-            <div class="container">
-                <div class="row">
-                    <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 tm-margin-b-0">
-                        Copyright &copy; <span class="tm-current-year">2020</span> - Vuela Libre&trade;
-                    </p>
+                                    </p>
+
+                                    <ul class="list-unstyled mb-0 mt-3">
+                                        <li>
+                                            <b> <i class="fa fa-map-marker"></i></b><span>
+                                                214 West Arnold St. New York, NY
+                                                10002
+                                            </span>
+                                        </li>
+                                        <li> <b><i class="fa fa-phone-square"></i></b><span>(123) 345-6789</span> </li>
+                                        <li> <b><i class="fa fa-phone-square"></i></b><span>(+100) 123 456 7890</span> </li>
+                                        <li> <b><i class="fa fa-headphones"></i></b><span>support@realvilla.demo</span> </li>
+                                        <li> <b><i class="fa fa-clock-o"></i></b><span>Mon - Sun / 9:00AM - 8:00PM</span> </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <!-- END ADDRESS -->
+                            <!-- QUICK LINKS -->
+                            <div class="col-md-4">
+                                <div class="widget__footer">
+                                    <h4 class="footer-title">Quick Links</h4>
+                                    <div class="link__category-two-column">
+                                        <ul class="list-unstyled ">
+                                            <li class="list-inline-item">
+                                                <a href="#">Commercial</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">business</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">House</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">Residential</a>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <a href="#">Residential Tower</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">Beverly Hills</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">Los angeles</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">The beach</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">Property Listing</a>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <a href="#">Clasic</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">Modern Home</a>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <a href="#">Luxury</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">Beach Pasadena</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END QUICK LINKS -->
+                            <!-- NEWSLETTERS -->
+                            <div class="col-md-4">
+                                <div class="widget__footer">
+                                    <h4 class="footer-title">follow us </h4>
+                                    <p class="mb-2">
+                                        Follow us and stay in touch to get the latest news
+                                    </p>
+                                    <p>
+                                        <button class="btn btn-social btn-social-o facebook mr-1">
+                                            <i class="fa fa-facebook-f"></i>
+                                        </button>
+                                        <button class="btn btn-social btn-social-o twitter mr-1">
+                                            <i class="fa fa-twitter"></i>
+                                        </button>
+
+                                        <button class="btn btn-social btn-social-o linkedin mr-1">
+                                            <i class="fa fa-linkedin"></i>
+                                        </button>
+                                        <button class="btn btn-social btn-social-o instagram mr-1">
+                                            <i class="fa fa-instagram"></i>
+                                        </button>
+
+                                        <button class="btn btn-social btn-social-o youtube mr-1">
+                                            <i class="fa fa-youtube"></i>
+                                        </button>
+                                    </p>
+                                    <br>
+                                    <h4 class="footer-title">newsletter</h4>
+                                    <!-- Form Newsletter -->
+                                    <div class="widget__form-newsletter ">
+                                        <p>
+
+                                            Don’t miss to subscribe to our news feeds, kindly fill the form below
+                                        </p>
+                                        <div class="mt-3">
+                                            <input type="text" class="form-control mb-2" placeholder="Your email address">
+
+                                            <button class="btn btn-primary btn-block text-capitalize" type="button">
+                                                subscribe
+
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- END NEWSLETTER -->
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </footer>
 
-    </div>
-                
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+                <!-- Footer Bottom -->
+                <div class="bg__footer-bottom-v1">
+                    <div class="container">
+                        <div class="row flex-column-reverse flex-md-row">
+                            <div class="col-md-6">
+                                <span>
+                                    © 2020 Rethouse Real Estate - Premium real estate & theme &amp; theme by
+                                    <a href="#">retenvi.com</a>
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-inline ">
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            privacy
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            contact
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            about
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            faq
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </footer>
 
 
-    <script src="~/js/jquery-1.11.3.min.js"></script>             
-    <script src="~/js/popper.min.js"></script>                    
-    <script src="~/js/bootstrap.min.js"></script>                 
-    <script src="~/js/datepicker.min.js"></script>                
-    <script src="~/js/jquery.singlePageNav.min.js"></script>      
-    <script src="~/slick/slick.min.js"></script>                  
-    <script>
+            <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
-                    /* Google map
-                    ------------------------------------------------*/
-                    var map = '';
-                    var center;
+            <script type="text/javascript" src="~/js/index.bundle.js?10eb1139a9f2b8f356b2"></script>
 
-                    function initialize() {
-                        var mapOptions = {
-                            zoom: 16,
-                            center: new google.maps.LatLng(13.7567928, 100.5653741),
-                            scrollwheel: false
-                        };
+            @RenderSection("Scripts", required: false)
 
-                        map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
 
-                        google.maps.event.addDomListener(map, 'idle', function () {
-                            calculateCenter();
-                        });
-
-                        google.maps.event.addDomListener(window, 'resize', function () {
-                            map.setCenter(center);
-                        });
-                    }
-
-                    function calculateCenter() {
-                        center = map.getCenter();
-                    }
-
-                    function loadGoogleMap() {
-                        var script = document.createElement('script');
-                        script.type = 'text/javascript';
-                        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDVWt4rJfibfsEDvcuaChUaZRS5NXey1Cs&v=3.exp&sensor=false&' + 'callback=initialize';
-                        document.body.appendChild(script);
-                    }
-
-                    function setCarousel() {
-
-                        if ($('.tm-article-carousel').hasClass('slick-initialized')) {
-                            $('.tm-article-carousel').slick('destroy');
-                        }
-
-                        if ($(window).width() < 438) {
-                            // Slick carousel
-                            $('.tm-article-carousel').slick({
-                                infinite: false,
-                                dots: true,
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-                            });
-                        }
-                        else {
-                            $('.tm-article-carousel').slick({
-                                infinite: false,
-                                dots: true,
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            });
-                        }
-                    }
-
-                    function setPageNav() {
-                        if ($(window).width() > 991) {
-                            $('#tm-top-bar').singlePageNav({
-                                currentClass: 'active',
-                                offset: 79
-                            });
-                        }
-                        else {
-                            $('#tm-top-bar').singlePageNav({
-                                currentClass: 'active',
-                                offset: 65
-                            });
-                        }
-                    }
-
-                    function togglePlayPause() {
-                        vid = $('.tmVideo').get(0);
-
-                        if (vid.paused) {
-                            vid.play();
-                            $('.tm-btn-play').hide();
-                            $('.tm-btn-pause').show();
-                        }
-                        else {
-                            vid.pause();
-                            $('.tm-btn-play').show();
-                            $('.tm-btn-pause').hide();
-                        }
-                    }
-
-                    $(document).ready(function () {
-
-                        $(window).on("scroll", function () {
-                            if ($(window).scrollTop() > 100) {
-                                $(".tm-top-bar").addClass("active");
-                            } else {
-                                //remove the background property so it comes transparent again (defined in your css)
-                                $(".tm-top-bar").removeClass("active");
-                            }
-                        });
-
-                        // Google Map
-                        loadGoogleMap();
-
-                        // Date Picker
-                        const pickerCheckIn = datepicker('#inputCheckIn');
-                        const pickerCheckOut = datepicker('#inputCheckOut');
-
-                        // Slick carousel
-                        setCarousel();
-                        setPageNav();
-
-                        $(window).resize(function () {
-                            setCarousel();
-                            setPageNav();
-                        });
-
-                        // Close navbar after clicked
-                        $('.nav-link').click(function () {
-                            $('#mainNav').removeClass('show');
-                        });
-
-                        // Control video
-                        $('.tm-btn-play').click(function () {
-                            togglePlayPause();
-                        });
-
-                        $('.tm-btn-pause').click(function () {
-                            togglePlayPause();
-                        });
-
-                        // Update the current year in copyright
-                        $('.tm-current-year').text(new Date().getFullYear());
-                    });
-
-                </script>
-
-                @RenderSection("Scripts", required: false)
-</body>
+        </body>
 </html>

@@ -2,93 +2,81 @@
     ViewData["Title"] = "Login";
 }
 
-<body class="my-login-page">
-    <section class="h-100">
-        <div class="container h-100">
-            <div class="row justify-content-md-center h-100">
-                <div class="card-wrapper">
-                    <div class="brand">
-                        <img src="~/img/user-01.png" alt="logo">
-                    </div>
-                    <div class="card fat">
-                        <div class="card-body">
-                            <h4 class="card-title">Inicio de Sesión</h4>
-                            <form method="POST" class="my-login-validation" novalidate="" action="/auth/login">
-                                <div class="form-group">
-                                    <label for="email">Correo electrónico</label>
-                                    <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
-                                    <div class="invalid-feedback">
-                                        Email is invalid
-                                    </div>
-                                </div>
+<!-- BREADCRUMB -->
+<div class="bg-theme-overlay">
+    <section class="section__breadcrumb ">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="text-capitalize text-white">login</h2>
+                    <ul class="list-inline ">
+                        
+                        <li class="list-inline-item">
+                            <a href="#" class="text-white">
+                                Auth
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="text-white">
+                                Login
+                            </a>
+                        </li>
 
-                                <div class="form-group">
-                                    <label for="password">
-                                        Contraseña
-                                        <a href="forgot.html" class="float-right">
-                                            Forgot Password?
-                                        </a>
-                                    </label>
-                                    <input id="password" type="password" class="form-control" name="password" required data-eye>
-                                    <div class="invalid-feedback">
-                                        Password is required
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" name="remember" id="remember" class="custom-control-input">
-                                        <label for="remember" class="custom-control-label">Remember Me</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group m-0">
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                        Login
-                                    </button>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    Don't have an account? <a href="register.html">Create One</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
+</div>
+<!-- END BREADCRUMB -->
+    </header>
+<div class="clearfix"></div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="js/my-login.js"></script>
-</body>
+<!-- LISTING LIST -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Form Login -->
+                <div class="card mx-auto" style="max-width: 380px;">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Sign in</h4>
+                        <form action="/auth/login" method="post">
+                            <a href="#" class="btn btn-facebook btn-block mb-2 text-white">
+                                <i class="fa fa-facebook"></i> &nbsp; Sign
+                                in
+                                with
+                                Facebook
+                            </a>
+                            <a href="#" class="btn btn-primary btn-block mb-4">
+                                <i class="fa fa-google"></i> &nbsp; Sign in with
+                                Google
+                            </a>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="E-Mail" type="text" name="email">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Contraseña" type="password" name="password">
+                            </div> <!-- form-group// -->
 
-@*<div class="text-center">
+                            <div class="form-group">
+                                <a href="#" class="float-right">Forgot password?</a>
+                                <label class="float-left custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                           class="custom-control-input" checked="">
+                                    <span class="custom-control-label"> Remember </span>
+                                </label>
+                            </div> <!-- form-group form-check .// -->
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"> Login </button>
+                            </div> <!-- form-group// -->
+                        </form>
+                    </div> <!-- card-body.// -->
+                </div> <!-- card .// -->
 
-    <h1>Login</h1>
-
-    <br />
-
-    <form action="/auth/login" method="post">
-
-
-        <div class="form-group">
-            <label>Usuario :</label>
-            <input type="text" name="correo" />
+                <p class="text-center mt-4">Don't have account? <a href="#">Sign up</a></p>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label> Contraseña: </label>
-            <input type="password" name="pass" />
-        </div>
-
-        <span>@Html.ValidationMessage("Login")</span>
-
-        <br />
-
-        <button class="btn btn-primary">Login</button>
-    </form>
-
-
-    </div>*@
+    </div>
+</section>
+<!-- END LISTING LIST -->
