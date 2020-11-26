@@ -23,7 +23,12 @@ namespace VuelaLibreProject.Controllers
 
         }
 
-       
+        public Usuario LoggerUser()
+        {
+            var claim = HttpContext.User.Claims.FirstOrDefault();
+            var user = _context.usuarios.Where(o => o.correoUsuario == claim.Value).FirstOrDefault();
+            return user;
+        }
 
 
         public IActionResult ListaVuelos()
@@ -94,29 +99,48 @@ namespace VuelaLibreProject.Controllers
 
 
         [HttpPost]
-        public ActionResult ComprarVuelos(Vuelos vuelos, int id, string dni, string nombres, string apellidos, int numAsientos ) {
+        public ActionResult ComprarVuelos( int id, string dni, string nombres, string apellidos, int numAsientos) {
 
-            var pasaje = new Pasaje();
-            var vuel = _context.vuelos.Where(o => o.idVuelo == id).FirstOrDefault();
-            var nombreOrigen = _context.ListDepartamento.Where(o => o.nombreDepartamentos == vuel.departamentoOrigen.nombreDepartamentos).FirstOrDefault();
-            var nombreDestino = _context.ListDepartamento.Where(o => o.nombreDepartamentos == vuel.departamentoDestino.nombreDepartamentos).FirstOrDefault();
+            var pasaje = new Pasaje();                    
+
             
-
-
             pasaje.dni = dni;
             pasaje.nombres = nombres;
             pasaje.apellidos = apellidos;
-            pasaje.numAsiento = numAsientos;
-            pasaje.origen = nombreOrigen.nombreDepartamentos;
-            pasaje.destino = nombreDestino.nombreDepartamentos;
+            pasaje.numAsiento =Convert.ToInt32(numAsientos);
+
+            pasaje.idUsuario = LoggerUser().idUsuario;
+
             pasaje.fechaCompra = DateTime.Now;
-            pasaje.precio = vuel.precioVuelo;
-            pasaje.fechaVuelo = vuel.fechaHoraVuelo;
+
+            pasaje.idVuelo = id;
 
             _context.ListPasaje.Add(pasaje);
             _context.SaveChanges();
 
-         
+            //var pasajeX = _context.ListPasaje.Last();
+
+            //int idPasaje=pasajeX.idPasaje;
+
+
+            //var ticketVuelo = new TicketVuelo();
+
+            //ticketVuelo.idPasaje = idPasaje;
+            //ticketVuelo.idVuelo = id;
+
+            //_context.ListTicketVuelo.Add(ticketVuelo);
+            //_context.SaveChanges();
+
+
+            //pasaje.origen = nombreOrigen.nombreDepartamentos;
+            //pasaje.destino = nombreDestino.nombreDepartamentos;
+            //pasaje.fechaCompra = DateTime.Now;
+            //pasaje.precio = vuel.precioVuelo;
+            //pasaje.fechaVuelo = vuel.fechaHoraVuelo;
+
+
+
+
             return View("index", "home");
 
 

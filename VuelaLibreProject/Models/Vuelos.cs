@@ -16,6 +16,7 @@ namespace VuelaLibreProject.Models
         public int asientos{ get; set; }
         public int idAerolinea { get; set; }
 
+
         public Departamentos departamentoOrigen { get; set; }
         public Departamentos departamentoDestino { get; set; }
         public Aerolineas aerolineas { get; set; }

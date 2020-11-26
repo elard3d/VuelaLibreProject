@@ -12,7 +12,7 @@ namespace VuelaLibreProject.Models
         public int idPasaje { get; set; }
         public int idVuelo { get; set; }
 
-        public Vuelos vuelos { get; set; }
-        public Pasaje pasajes { get; set; }
+        //public Vuelos vuelo { get; set; }
+        //public Pasaje pasaje { get; set; }
     }
 }
