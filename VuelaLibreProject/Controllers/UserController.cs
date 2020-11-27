@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using VuelaLibreProject.Models.DB;
 
 using VuelaLibreProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace VuelaLibreProject.Controllers
 {
@@ -35,12 +36,13 @@ namespace VuelaLibreProject.Controllers
         {
             ViewBag.Usuarios = _context.usuarios.Where(o=>o.idUsuario == LoggerUser().idUsuario).FirstOrDefault();
 
-            ViewBag.Pasajes = _context.ListPasaje.Where(o => o.idUsuario == LoggerUser().idUsuario).ToList();
+            ViewBag.Pasajes = _context.ListPasaje.Where(o => o.idUsuario == LoggerUser().idUsuario).Include(o=>o.vuelo).ThenInclude(o=>o.departamentoOrigen).Include(o=>o.vuelo).ThenInclude(o=>o.departamentoDestino).ToList();
             
 
             ViewBag.Departamentos = _context.ListDepartamento.ToList();
             ViewBag.Aerolineas = _context.ListAerolineas.ToList();
-            ViewBag.Vuelos = _context.vuelos.ToList();
+
+            ViewBag.Vuelos = _context.vuelos.Include(o=>o.departamentoOrigen).Include(o=>o.departamentoDestino).ToList();
             
             
             ViewBag.TicketVuelo= _context.ListTicketVuelo.ToList();

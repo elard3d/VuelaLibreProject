@@ -107,20 +107,8 @@
 
                                     @for (int j = 0; j < vuelo.asientos; j++)
                                     {
-                                        @foreach (var numeroAsiento in pasajesComprados)
-                                        {
-
-                                            if (numeroAsiento != j)
-                                            {
-                                                <option value="@j"> @j </option>
-                                                break;
-                                            }
-                                            else
-                                            {
-
-                                                continue;
-                                            }
-
+                                        @if (pasajesComprados.Find(o => o.numAsiento == j) == null) { 
+                                            <option value="@j">@j</option>
                                         }
                                     }
 
